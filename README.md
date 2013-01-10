@@ -1,5 +1,6 @@
-## ===========================  matlabPyrTools ============================
+## matlabPyrTools
 
+============================
 This package contains some MatLab tools for multi-scale image
 processing.  Briefly, the tools include:
   - Recursive multi-scale image decompositions (pyramids), including
