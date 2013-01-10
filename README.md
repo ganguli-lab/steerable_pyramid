@@ -1,4 +1,4 @@
-===========================  matlabPyrTools ============================
+## ===========================  matlabPyrTools ============================
 
 This package contains some MatLab tools for multi-scale image
 processing.  Briefly, the tools include:
@@ -10,7 +10,7 @@ processing.  Briefly, the tools include:
   - Fast point-operations, histograms, histogram-matching.
   - Fast synthetic image generation: sine gratings, zone plates, fractals, etc.
   - Display routines for images and pyramids.  These include several
-    auto-scaling options, rounding to integer zoom factors to avoid 
+    auto-scaling options, rounding to integer zoom factors to avoid
     resampling artifacts, and useful labeling (dimensions and gray-range).
 
 The package is available as a gnu-zipped UNIX "tar" file, accessible
@@ -38,9 +38,9 @@ compilePyrTools.m which is located in the MEX subdirectory.
 
 To make sure these are in your matlab path, you can do *one* of the
 following:
-  1) Create a symbolic link (or macintosh "alias") for the relavent files 
+  1) Create a symbolic link (or macintosh "alias") for the relavent files
      in the main matlabPyrTools directory,   or
-  2) Copy the relavent files into the main matlabPyrTools directory,  or 
+  2) Copy the relavent files into the main matlabPyrTools directory,  or
   3) Put the MEX subdirectory in your matlab path: addpath('matlabPyrTools/MEX');
 
 Some example script files showing usage of the code are in the
