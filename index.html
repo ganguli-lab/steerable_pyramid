@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Steerable pyramid by ganguli-lab</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Steerable pyramid</h1>
+        <p>Matlab tools for multi-scale image processing, from Eero Simoncelli's lab (http://www.cns.nyu.edu/~eero/steerpyr/)</p>
+
+        <p class="view"><a href="https://github.com/ganguli-lab/steerable_pyramid">View the Project on GitHub <small>ganguli-lab/steerable_pyramid</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/ganguli-lab/steerable_pyramid/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/ganguli-lab/steerable_pyramid/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/ganguli-lab/steerable_pyramid">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>matlabPyrTools</h2>
+
+<p>(A fork of Eero Simoncelli's steerable pyramid code)</p>
+
+<h1></h1>
+
+<p>This package contains some MatLab tools for multi-scale image
+processing.  Briefly, the tools include:</p>
+
+<ul>
+<li>Recursive multi-scale image decompositions (pyramids), including Laplacian pyramids, QMFs, Wavelets, and steerable pyramids.  These operate on 1D or 2D signals of arbitrary dimension.  Data structures are compatible with the MatLab wavelet toolbox.</li>
+<li>Fast 2D convolution routines, with subsampling and boundary-handling.</li>
+<li>Fast point-operations, histograms, histogram-matching.</li>
+<li>Fast synthetic image generation: sine gratings, zone plates, fractals, etc.</li>
+<li>Display routines for images and pyramids.  These include several auto-scaling options, rounding to integer zoom factors to avoid resampling artifacts, and useful labeling (dimensions and gray-range).</li>
+</ul><p>The package is available as a gnu-zipped UNIX "tar" file, accessible from the web page: <a href="http://www.cns.nyu.edu/%7Elcv/software.html">http://www.cns.nyu.edu/~lcv/software.html</a></p>
+
+<p>The code was originally written in Matlab version 4.2, and continues to work in new versions (as of 12/09).  To use the code (these lines are for UNIX):</p>
+
+<ol>
+<li>gunzip matlabPyrTools.tar.gz     # unpack g'zipped file</li>
+<li>tar tvf matlabPyrTools.tar           # view contents</li>
+<li>tar xvf matlabPyrTools.tar           # extract into  directory "matlabPyrTools"</li>
+<li>rm matlabPyrTools.tar        # delete tarfile</li>
+<li>Run matlab, and execute:
+  addpath();
+  help matlabPyrTools</li>
+</ol><p>A few functions are actually MEX interfaces to C code.  These are contained in the subdirectory called MEX.  The MEX files have been tested on Sun (Solaris), LinuX (on an Intel platform), and Macintosh OSX (on PowerPC and Intel), but should not be difficult to compile on most other platforms.  Source code is included in the MEX directory, as well as Make files.  Pre-compiled versions are included for a number of platforms.  To compile on your platform, simply run compilePyrTools.m which is located in the MEX subdirectory.</p>
+
+<p>To make sure these are in your matlab path, you can do <em>one</em> of the following:</p>
+
+<ol>
+<li>Create a symbolic link (or macintosh "alias") for the relavent files in the main matlabPyrTools directory, or</li>
+<li>Copy the relavent files into the main matlabPyrTools directory,  or</li>
+<li>Put the MEX subdirectory in your matlab path: addpath('matlabPyrTools/MEX');</li>
+</ol><p>Some example script files showing usage of the code are in the
+directory </p>/TUTORIALS.  There is a README file in that directory
+describing the contents.
+
+<p>Incremental changes/updates to the code are documented in the ChangeLog file.</p>
+
+<hr><p><em>Comments/Suggestions/Bugs to:</em><br>
+Eero P. Simoncelli<br>
+Center for Neural Science, and Courant Institute for Mathematical Sciences<br>
+New York University<br><a href="mailto:eero.simoncelli@nyu.edu">eero.simoncelli@nyu.edu</a><br><a href="http://www.cns.nyu.edu/%7Eeero/">http://www.cns.nyu.edu/~eero/</a></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/ganguli-lab">ganguli-lab</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
