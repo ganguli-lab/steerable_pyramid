@@ -35,10 +35,10 @@ describing the contents.
 
 Incremental changes/updates to the code are documented in the ChangeLog file.
 
-Comments/Suggestions/Bugs to:  
+-------------
+*Comments/Suggestions/Bugs to:*  
 Eero P. Simoncelli  
-Center for Neural Science, and  
-Courant Institute for Mathematical Science  
-New York Universit  
-eero.simoncelli@nyu.ed  
+Center for Neural Science, and Courant Institute for Mathematical Sciences  
+New York University  
+eero.simoncelli@nyu.edu  
 http://www.cns.nyu.edu/~eero/
