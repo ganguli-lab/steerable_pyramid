@@ -25,40 +25,40 @@
 % TWIDTH is the width of the transition region of the radial lowpass
 % function, in octaves (default = 1, which gives a raised cosine for
 % the bandpass filters).
-                                                                                                                        
+
 % Javier Portilla, 7/04, basing on Eero Simoncelli's Matlab Pyrtools code
 % and our common code on texture synthesis (textureSynthesis.m).
-                                                                                                                        
+
 function res = reconSCFpyr(pyr, indices, levs, bands, twidth)
-                                                                                                                        
+
 %%------------------------------------------------------------
 %% DEFAULTS:
-                                                                                                                        
+
 if ~exist('levs'),
   levs = 'all';
 end
-                                                                                                                        
+
 if ~exist('bands')
   bands = 'all';
 end
-                                                                                                                        
+
 if ~exist('twidth'),
   twidth = 1;
 elseif (twidth <= 0)
   fprintf(1,'Warning: TWIDTH must be positive.  Setting to 1.\n');
   twidth = 1;
 end
-                                                                                                                        
+
 %%------------------------------------------------------------
-                                                                                                                        
-                                                                                                                        
+
+
 pind = indices;
 Nsc = log2(pind(1,1)/pind(end,1));
 Nor = (size(pind,1)-2)/Nsc;
-                                                                                                                        
+
 for nsc = 1:Nsc,
     firstBnum = (nsc-1)*Nor+2;
-                                                                                                                        
+
 %% Re-create analytic subbands
     dims = pind(firstBnum,:);
     ctr = ceil((dims+0.5)/2);
@@ -82,6 +82,5 @@ for nsc = 1:Nsc,
       pyr(ind) = ch;
     end     % nor
 end         % nsc
-                                                                                                                        
+
 res = reconSFpyr(pyr, indices, levs, bands, twidth);
-                                                                                                                        

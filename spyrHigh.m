@@ -7,4 +7,3 @@
 function res =  spyrHigh(pyr,pind)
 
 res  = pyrBand(pyr, pind, 1);
-

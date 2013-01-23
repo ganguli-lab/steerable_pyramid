@@ -1,14 +1,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% IMAGE PYRAMID TUTORIAL 
+%%% IMAGE PYRAMID TUTORIAL
 %%%
-%%% A brief introduction to multi-scale pyramid decompositions for image 
+%%% A brief introduction to multi-scale pyramid decompositions for image
 %%% processing.  You should go through this, reading the comments, and
-%%% executing the corresponding MatLab instructions.  This file assumes 
+%%% executing the corresponding MatLab instructions.  This file assumes
 %%% a basic familiarity with matrix algebra, with linear systems and Fourier
 %%% theory, and with MatLab.  If you don't understand a particular
 %%% function call, execute "help <functionName>" to see documentation.
 %%%
-%%% EPS, 6/96.  
+%%% EPS, 6/96.
 %%% Based on the original OBVIUS tutorial.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -22,9 +22,9 @@ clf; showIm(im, 'auto2', 'auto', 'im');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%% LAPLACIAN PYRAMIDS: 
+%%% LAPLACIAN PYRAMIDS:
 
-%% Images may be decomposed into information at different scales.  
+%% Images may be decomposed into information at different scales.
 %% Blurring eliminates the fine scales (detail):
 
 binom5 = binomialFilter(5);
@@ -91,7 +91,7 @@ imStats(im, recon);
 %%  |	                |                                  |
 %%  |	                V                                  |
 %%   --------------> subtract --> FINE1 -------------------
-%% 
+%%
 %% Note that the number of samples in the representation (i.e., total
 %% samples in BLURRED1 and FINE1) is 1.5 times the number of samples
 %% in the original IM.  Thus, this representation is OVERCOMPLETE.
@@ -151,7 +151,7 @@ imStats(im, recon)
 %% subbands.  The display routine showLpyr shows all the subbands of the
 %% pyramid, at the their correct relative sizes.  It should now be
 %% clearer why these data structures are called "pyramids".
-[pyr,pind] = buildLpyr(im,5-imSubSample); 
+[pyr,pind] = buildLpyr(im,5-imSubSample);
 showLpyr(pyr,pind);
 
 %% There are also "accessor" functions for pulling out a single subband:
@@ -217,7 +217,7 @@ imStats(im,fullresr);
 sig = 100*randn([1 16]);
 sh = [0 7];  %shift amount
 lev = 2; % level of pyramid to look at
-flt = 'binom3';  %filter to use: 
+flt = 'binom3';  %filter to use:
 
 shiftIm = shift(sig,sh);
 [pyr,pind] = buildLpyr(shiftIm, lev, flt, flt, 'circular');
@@ -306,7 +306,7 @@ for lev=1:size(locations,2)
   showIm(projection(locations(lev),:));
   axis([0 sz -0.3 0.8]);
 end
-  
+
 %% Now consider the frequency response of these functions, plotted over the
 %% range [-pi,pi]:
 for lev=1:size(locations,2)
@@ -385,8 +385,8 @@ sig = mkFract([1,64],1.6);
 subplot(2,1,1); showIm(sig,'auto1','auto','sig');
 lo1 = corrDn(sig,flo,'reflect1',[1 2],[1 1]);
 hi1 = corrDn(sig,fhi,'reflect1',[1 2],[1 2]);
-subplot(2,1,2); 
-showIm(lo1,'auto1','auto','low and high bands'); hold on; plot(hi1,'--r'); hold off; 
+subplot(2,1,2);
+showIm(lo1,'auto1','auto','low and high bands'); hold on; plot(hi1,'--r'); hold off;
 
 %% Notice that the two subbands are half the size of the original
 %% image, due to the subsampling by a factor of 2.  One subtle point:
@@ -413,8 +413,8 @@ imStats(sig,reconlo+reconhi);
 %%     |                                      ^
 %%     |	                              |
 %%     |	                              |
-%%      -> fhi/down2 --> HI1 --> up2/fhi ----- 
-%% 
+%%      -> fhi/down2 --> HI1 --> up2/fhi -----
+%%
 %% Note that the number of samples in the representation (i.e., total
 %% samples in LO1 and HI1) is equal to the number of samples in the
 %% original IM.  Thus, this representation is exactly COMPLETE, or
@@ -440,7 +440,7 @@ clf; showIm(M,'auto1','auto','M');
 %% The transform matrix is composed of two sub-matrices.  The top half
 %% contains the lowpass kernel, shifted by increments of 2 samples.
 %% The bottom half contains the highpass.  Now we compute the inverse
-%% of this matrix: 
+%% of this matrix:
 M_inv = inv(M);
 showIm(M_inv,'auto1','auto','M_inv');
 
@@ -455,7 +455,7 @@ imStats(M_inv',M);
 %% upConv is equivalent to multiplication by a matrix with copies of
 %% the filter on the COLUMNS, translated by the upsampling factor.
 
-%% As in the Laplacian pyramid, we can recursively apply this QMF 
+%% As in the Laplacian pyramid, we can recursively apply this QMF
 %% band-splitting operation to the lowpass band:
 lo2 = corrDn(lo1,flo,'reflect1',[1 2]);
 hi2 = corrDn(lo1,fhi,'reflect1',[1 2],[1 2]);
@@ -497,16 +497,16 @@ nbands = size(pind,1);
 for b = 1:nbands
   subplot(nbands,1,b); lplot(pyrBand(pyr,pind,b));
 end
-	
+
 res = reconWpyr(pyr,pind);
 imStats(sig,res);
 
-%% Now for 2D, we use separable filters.  There are 4 ways to apply the two 
+%% Now for 2D, we use separable filters.  There are 4 ways to apply the two
 %% filters to the input image (followed by the relavent subsampling operation):
 %%   (1) lowpass in both x and y
-%%   (2) lowpass in x and highpass in y 
+%%   (2) lowpass in x and highpass in y
 %%   (3) lowpass in y and highpass in x
-%%   (4) highpass in both x and y.  
+%%   (4) highpass in both x and y.
 %% The pyramid is built by recursively subdividing the first of these bands
 %% into four new subbands.
 
@@ -569,7 +569,7 @@ clf; imagesc(freq,freq,sumSpectra); axis('square'); axis('xy'); title('one scale
 nlevs = wpyrHt(pind);
 for lnum=1:nlevs
   for bnum=1:3
-    subplot(nlevs,3,(lnum-1)*3+bnum); 
+    subplot(nlevs,3,(lnum-1)*3+bnum);
     showIm(wpyrBand(pyr,pind,lnum,bnum), 'auto2', 2^(lnum+imSubSample-2));
   end
 end
@@ -660,7 +660,7 @@ showIm(M*M') % identity!
 %% Again, they're power complementary:
 plot(pi*[-32:31]/32,abs(fft(daub_lo,64)).^2,'--',...
      pi*[-32:31]/32,abs(fft(daub_hi,64)).^2,'-');
- 
+
 %% The sum of the power spectra is again flat
 plot(pi*[-32:31]/32,...
     fftshift(abs(fft(daub_lo,64)).^2)+fftshift(abs(fft(daub_hi,64)).^2));
@@ -740,7 +740,7 @@ nextFig(2,-1);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%% The "STEERABLE PYRAMID" 
+%%% The "STEERABLE PYRAMID"
 
 %% The steerable pyramid is a multi-scale representation that is
 %% translation-invariant, but that also includes representation of
@@ -748,8 +748,8 @@ nextFig(2,-1);
 %% designed to be rotation-invariant. The basis/projection functions
 %% are oriented (steerable) filters, localized in space and frequency.
 %% It is overcomplete to avoid aliasing.  And it is "self-inverting"
-%% (like the QMF/Wavelet transform): the projection functions and 
-%% basis functions are identical.  The mathematical phrase for a 
+%% (like the QMF/Wavelet transform): the projection functions and
+%% basis functions are identical.  The mathematical phrase for a
 %% transform obeying this property is "tight frame".
 
 %% The system diagram for the steerable pyramid (described in the
@@ -819,7 +819,7 @@ clf; showIm(fsum);
 
 %% build a Steerable pyramid:
 [pyr,pind] = buildSpyr(im, 4-imSubSample, filts);
- 
+
 %% Look at first (vertical) bands, different scales:
 for s = 1:min(4,spyrHt(pind))
   band = spyrBand(pyr,pind,s,1);
@@ -861,8 +861,8 @@ movie(M,3);
 
 %% Reconstruct.  Note that the filters are not perfect, although they are good
 %% enough for most applications.
-res = reconSpyr(pyr, pind, filts); 
-showIm(im + i * res);
+res = reconSpyr(pyr, pind, filts);
+showIm(im + 1i * res);
 imStats(im,res);
 
 %% As with previous pyramids, you can select subsets of the levels
@@ -888,9 +888,9 @@ imStats(im,res);  % nearly perfect
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % The steerable pyramid transform given above is described in:
 %
-%   E P Simoncelli and W T Freeman. 
-%   The Steerable Pyramid: A Flexible Architecture for Multi-Scale 
-%   Derivative Computation.  IEEE Second Int'l Conf on Image Processing. 
+%   E P Simoncelli and W T Freeman.
+%   The Steerable Pyramid: A Flexible Architecture for Multi-Scale
+%   Derivative Computation.  IEEE Second Int'l Conf on Image Processing.
 %   Washington DC,  October 1995.
 %
 % Online access:
@@ -899,5 +899,5 @@ imStats(im,res);  % nearly perfect
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Local Variables:
-%% buffer-read-only: t 
+%% buffer-read-only: t
 %% End:

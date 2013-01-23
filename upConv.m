@@ -16,16 +16,16 @@
 %
 % Upsampling factors are determined by STEP (optional, default=[1 1]),
 % a 2-vector [y,x].
-% 
-% The window over which the convolution occurs is specfied by START 
-% (optional, default=[1,1], and STOP (optional, default = 
+%
+% The window over which the convolution occurs is specfied by START
+% (optional, default=[1,1], and STOP (optional, default =
 % step .* (size(IM) + floor((start-1)./step))).
 %
-% RES is an optional result matrix.  The convolution result will be 
-% destructively added into this matrix.  If this argument is passed, the 
-% result matrix will not be returned. DO NOT USE THIS ARGUMENT IF 
+% RES is an optional result matrix.  The convolution result will be
+% destructively added into this matrix.  If this argument is passed, the
+% result matrix will not be returned. DO NOT USE THIS ARGUMENT IF
 % YOU DO NOT UNDERSTAND WHAT THIS MEANS!!
-% 
+%
 % NOTE: this operation corresponds to multiplication of a signal
 % vector by a matrix whose columns contain copies of the time-reversed
 % (or space-reversed) FILT shifted by multiples of STEP.  See corrDn.m
@@ -42,7 +42,7 @@ fprintf(1,'WARNING: You should compile the MEX version of "upConv.c",\n         
 %------------------------------------------------------------
 %% OPTIONAL ARGS:
 
-if (exist('edges') == 1) 
+if (exist('edges') == 1)
   if (strcmp(edges,'reflect1') ~= 1)
     warning('Using REFLECT1 edge-handling (use MEX code for other options).');
   end
@@ -50,16 +50,16 @@ end
 
 if (exist('step') ~= 1)
   step = [1,1];
-end	
+end
 
 if (exist('start') ~= 1)
   start = [1,1];
-end	
+end
 
 % A multiple of step
 if (exist('stop') ~= 1)
   stop = step .* (floor((start-ones(size(start)))./step)+size(im))
-end	
+end
 
 if ( ceil((stop(1)+1-start(1)) / step(1)) ~= size(im,1) )
   error('Bad Y result dimension');
@@ -70,11 +70,12 @@ end
 
 if (exist('res') ~= 1)
   res = zeros(stop-start+1);
-end	
+end
 
 %------------------------------------------------------------
 
 tmp = zeros(size(res));
 tmp(start(1):step(1):stop(1),start(2):step(2):stop(2)) = im;
 
+fprintf('here');
 result = rconv2(tmp,filt) + res;

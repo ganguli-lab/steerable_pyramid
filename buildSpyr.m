@@ -4,7 +4,7 @@
 % done with spatial filters.
 %
 % HEIGHT (optional) specifies the number of pyramid levels to build. Default
-% is maxPyrHt(size(IM),size(FILT)). 
+% is maxPyrHt(size(IM),size(FILT)).
 % You can also specify 'auto' to use this value.
 %
 % FILTFILE (optional) should be a string referring to an m-file that
@@ -59,4 +59,3 @@ lo0 = corrDn(im, lo0filt, edges);
 
 pyr = [hi0(:) ; pyr];
 pind = [size(hi0); pind];
-  

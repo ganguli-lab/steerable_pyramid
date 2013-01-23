@@ -1,8 +1,8 @@
 % RANGE = showSpyr (PYR, INDICES, RANGE, GAP, LEVEL_SCALE_FACTOR)
-% 
+%
 % Display a steerable pyramid, specified by PYR and INDICES
 % (see buildSpyr), in the current figure.  The highpass band is not shown.
-% 
+%
 % RANGE is a 2-vector specifying the values that map to black and
 % white, respectively.  These values are scaled by
 % LEVEL_SCALE_FACTOR^(lev-1) for bands at each level.  Passing a value
@@ -13,13 +13,13 @@
 % to showIm(subband,'auto1').  Similarly, 'indep2' causes each subband
 % to be scaled independently as if by showIm(subband,'indep2').
 % The default value for RANGE is 'auto2'.
-% 
+%
 % GAP (optional, default=1) specifies the gap in pixels to leave
-% between subbands.  
-% 
+% between subbands.
+%
 % LEVEL_SCALE_FACTOR indicates the relative scaling between pyramid
 % levels.  This should be set to the sum of the kernel taps of the
-% lowpass filter used to construct the pyramid (default is 2, which is 
+% lowpass filter used to construct the pyramid (default is 2, which is
 % correct for L2-normalized filters.
 
 % Eero Simoncelli, 2/97.
@@ -31,10 +31,10 @@ nbands = spyrNumBands(pind);
 %------------------------------------------------------------
 %% OPTIONAL ARGS:
 
-if (exist('range') ~= 1)  
+if (exist('range') ~= 1)
   range = 'auto2';
 end
-		
+
 if (exist('gap') ~= 1)
   gap = 1;
 end
@@ -60,7 +60,7 @@ if strcmp(range,'auto1')
       [bmn,bmx] = range2(band);
       mn = min(mn, bmn);
       mx = max(mx, bmx);
-    end    
+    end
   end
   range = range * [mn mx]; 		% outer product
   band = pyrLow(pyr,pind);
@@ -85,7 +85,7 @@ elseif strcmp(range,'auto2')
       sqsum = sqsum + sum(sum(band.^2));
       numpixels = numpixels + prod(size(band));
       range((lnum-1)*nbands+bnum+1) = scale^(lnum-1);
-    end    
+    end
   end
   stdev = sqrt(sqsum/(numpixels-1));
   range = range * [ -3*stdev 3*stdev ]; % outer product
@@ -103,10 +103,10 @@ elseif strcmp(range,'indep2')
   band = pyrLow(pyr,pind);
   av = mean2(band);   stdev = sqrt(var2(band));
   range(nind,:) = [av-2*stdev,av+2*stdev];
-  
+
 elseif isstr(range)
   error(sprintf('Bad RANGE argument: %s',range))
-  
+
 elseif ((size(range,1) == 1) & (size(range,2) == 2))
   scales = scale.^[0:(ht-1)];
   scales = ones(nbands,1) * scales;   %outer product
@@ -134,7 +134,7 @@ for n = 1:nshades
     dist = ndist;
     bg = n;
   end
-end  
+end
 
 %% Compute positions of subbands:
 llpos = ones(nind,2);
@@ -174,15 +174,14 @@ llpos(1,:) = [1 1];
 urpos = llpos + pind - 1;
 d_im = bg + zeros(max(urpos));
 
-%% Paste bands into image, (im-r1)*(nshades-1)/(r2-r1) + 1.5 
+%% Paste bands into image, (im-r1)*(nshades-1)/(r2-r1) + 1.5
 for bnum=2:nind
   mult = (nshades-1) / (range(bnum,2)-range(bnum,1));
   d_im(llpos(bnum,1):urpos(bnum,1), llpos(bnum,2):urpos(bnum,2)) = ...
       mult*pyrBand(pyr,pind,bnum) + (1.5-mult*range(bnum,1));
 end
-  
-hh = image(d_im);
+
+hh = image(abs(d_im));
 axis('off');
 pixelAxes(size(d_im),'full');
 set(hh,'UserData',range);
-

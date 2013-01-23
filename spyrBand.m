@@ -1,4 +1,5 @@
 % [LEV,IND] = spyrBand(PYR,INDICES,LEVEL,BAND)
+
 %
 % Access a band from a steerable pyramid.
 % 
@@ -31,4 +32,3 @@ end
 
 firstband = 1 + band + nbands*(level-1);
 res  = pyrBand(pyr, pind, firstband);
-
