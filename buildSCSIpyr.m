@@ -57,7 +57,7 @@ angleMap = atan2(yramp,xramp);
 
 % log_rad is a radial mask
 log_rad = sqrt(xramp.^2 + yramp.^2);
-log_rad(ctr(1),ctr(2)) =  log_rad(ctr(1),ctr(2)-1);
+log_rad(ctr(1),ctr(2)) =  log_rad(ctr(1),ctr(2)-1);     % get rid of the 0 at the center of the map
 log_rad  = log2(log_rad);
 
 %% Radial transition function (a raised cosine in log-frequency), used to generate mask:
