@@ -1,8 +1,8 @@
 % [X, Y] = rcosFn(WIDTH, POSITION, VALUES)
 %
-% Return a lookup table (suitable for use by INTERP1) 
+% Return a lookup table (suitable for use by INTERP1)
 % containing a "raised cosine" soft threshold function:
-% 
+%
 %    Y =  VALUES(1) + (VALUES(2)-VALUES(1)) *
 %              cos^2( PI/2 * (X - POSITION + WIDTH)/WIDTH )
 %
@@ -13,7 +13,7 @@
 
 % Eero Simoncelli, 7/96.
 
-function [X, Y] = rcosFn(width,position,values)
+function [X, Y] = rcosFn(width,position,values,sz)
 
 %------------------------------------------------------------
 % OPTIONAL ARGS:
@@ -30,9 +30,11 @@ if (exist('values') ~= 1)
   values = [0,1];
 end
 
+if (exist('sz') ~= 1)
+    sz = 256;  %% arbitrary!
+end
 %------------------------------------------------------------
 
-sz = 256;  %% arbitrary!
 
 X    = pi * [-sz-1:1] / (2*sz);
 

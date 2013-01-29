@@ -8,7 +8,7 @@
 % each subband.  This is compatible with the MatLab Wavelet toolbox.
 %
 % LEVS (optional) should be a list of levels to include, or the string
-% 'all' (default).  0 corresonds to the residual highpass subband.  
+% 'all' (default).  0 corresonds to the residual highpass subband.
 % 1 corresponds to the finest oriented scale.  The lowpass band
 % corresponds to number spyrHt(INDICES)+1.
 %
@@ -104,5 +104,5 @@ if any(levs == 0)
   hidft = fftshift(fft2(subMtx(pyr, pind(1,:))));
   resdft = resdft + hidft .* hi0mask;
 end
- 
+
 res = real(ifft2(ifftshift(resdft)));

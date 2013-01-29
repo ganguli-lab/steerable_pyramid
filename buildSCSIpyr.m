@@ -1,3 +1,4 @@
+% WORK IN PROGRESS
 % builds a steerable, complex, scale invariant pyramid
 % Niru Maheswaranathan
 % Wed Jan 23 18:58:31 2013
@@ -49,8 +50,7 @@ dims = size(im);
 ctr = ceil((dims+0.5)/2);
 
 % ramp is a linearly increasing gradient from -1 to 1
-[xramp,yramp] = meshgrid( ([1:dims(2)]-ctr(2))./(dims(2)/2), ...
-    ([1:dims(1)]-ctr(1))./(dims(1)/2) );
+[xramp,yramp] = meshgrid( ([1:dims(2)]-ctr(2))./(dims(2)/2), ([1:dims(1)]-ctr(1))./(dims(1)/2) );
 
 % angle of the ramps
 angleMap = atan2(yramp,xramp);

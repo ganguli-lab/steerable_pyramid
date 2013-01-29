@@ -25,4 +25,3 @@ X = origin + increment*[0:size(lut(:),1)-1];
 Y = lut(:);
 
 res = reshape(interp1(X, Y, im(:), 'linear', 'extrap'),size(im));
-

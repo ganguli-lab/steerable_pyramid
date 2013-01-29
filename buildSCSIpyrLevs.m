@@ -1,3 +1,4 @@
+% WORK IN PROGRESS
 % [PYR, INDICES] = buildSCSIpyrLevs(LODFT, LOGRAD, XRCOS, YRCOS, ANGLE, HEIGHT, NBANDS)
 %
 % Recursive function for constructing levels of a steerable pyramid.  This
